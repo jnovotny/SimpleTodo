@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+
         setupListViewListener();
     }
 
@@ -60,12 +59,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                // first parameter is the context, second is the class of the activity to launch
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
                 i.putExtra("position", position);
-                i.putExtra("element", items.get(position));
-                startActivityForResult(i, EDIT_REQUEST_CODE); // brings up the second activity
-                System.err.println("Hello click");
+                i.putExtra("name", items.get(position));
+                startActivityForResult(i, EDIT_REQUEST_CODE);
             }
         });
 
